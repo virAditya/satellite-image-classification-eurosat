@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environments
+venv/
+env/
+ENV/
+.venv/
+
+# PyTorch models (don't commit weights)
+*.pth
+*.pt
+*.ckpt
+checkpoints/
+
+# Data (large files)
+data/
+*.zip
+*.tar.gz
+*.h5
+*.pkl
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+runs/
+tensorboard/
+
+# Results (ignore generated files, keep structure)
+results/confusion_matrices/*.png
+results/confusion_matrices/*.jpg
+results/training_logs/*.json
+results/training_logs/*.csv
+
+# Keep empty dirs
+!results/confusion_matrices/.gitkeep
+!results/training_logs/.gitkeep
