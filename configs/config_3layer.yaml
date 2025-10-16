@@ -1,0 +1,23 @@
+# Baseline 3-Layer CNN Config
+model:
+  name: 'baseline_3layer'
+  num_classes: 10
+  dropout_rate: 0.5
+
+training:
+  num_epochs: 30
+  learning_rate: 0.001
+  weight_decay: 1e-4
+  scheduler: 'ReduceLROnPlateau'
+  scheduler_patience: 3
+  scheduler_factor: 0.5
+  batch_size: 64
+  early_stopping_patience: 10
+
+data:
+  batch_size: 64
+  num_workers: 4
+  random_seed: 42
+  download: true
+
+device: 'cuda' if torch.cuda.is_available() else 'cpu'
