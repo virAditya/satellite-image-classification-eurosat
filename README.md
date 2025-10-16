@@ -1,4 +1,4 @@
-Satellite Image Classification on EuroSAT 🛰️
+**Satellite Image Classification on EuroSAT 🛰️**
 Python 3.8+
 PyTorch
 License: MIT
@@ -8,7 +8,7 @@ A systematic evolution of custom CNN architectures for satellite land use classi
 
 This repo provides modular PyTorch models and utilities to go from a simple baseline (94.30%) to a production-ready model (97.23%) by addressing specific failure modes like River/Highway confusion.
 
-🎯 Project Highlights
+***🎯 Project Highlights***
 Three Models: Baseline → Attention-Enhanced → Balanced Multi-Task.
 
 From Scratch: No ImageNet pre-training; pure architectural innovation.
@@ -19,14 +19,14 @@ Results: 97.23% accuracy, all classes ≥94%, Cohen's Kappa 0.9692.
 
 Dataset: EuroSAT RGB (27,000 Sentinel-2 images, 64×64, 10 classes).
 
-Performance Summary
+***Performance Summary***
 Model	Layers	Parameters	Test Accuracy	Key Innovation
 Baseline	3	2.1M	94.30%	Simple CNN
 Attention	7	7.4M	95.98%	CBAM Attention
 Balanced	12	11.2M	97.23%	Multi-Task Attention
 Per-Class (12-Layer Model): All ≥94.46% (Forest: 98.64%, Industrial: 98.68%, PermanentCrop: 94.46%).
 
-🚀 Quick Start
+***🚀 Quick Start***
 1. Clone and Setup
 bash
 git clone https://github.com/your-username/satellite-image-classification-eurosat.git
@@ -111,7 +111,7 @@ bash
 python models/balanced_12layer.py  # Outputs shape, params, attention weights
 Expected Output: ~11.2M params, attention α ≈0.5 (learnable).
 
-📊 Results
+***📊 Results***
 Key Learnings:
 
 Single attention (CBAM) fixes specific issues but creates trade-offs.
@@ -160,7 +160,7 @@ All classes balanced ≥94%.
 
 Reproduce by training with the example code above (expected: 97.23% on test set, seed=42).
 
-🛠️ Features
+***🛠️ Features***
 Models: 3-layer baseline, 7-layer CBAM, 12-layer balanced (residual + multi-task attention).
 
 Utils: Custom data loading, augmentation (rotation, flips, jitter), metrics (F1, Kappa), visualization (Seaborn/Heatmaps).
@@ -171,7 +171,7 @@ Evaluation: Per-class metrics, confusion analysis, TTA (Test-Time Augmentation) 
 
 Reproducibility: Seed=42, 70/15/15 split, deterministic ops.
 
-📚 Technical Specs
+***📚 Technical Specs***
 Dataset: EuroSAT RGB (Sentinel-2, 10 land cover classes).
 
 Input: 64×64×3 RGB images.
