@@ -28,22 +28,24 @@ Per-Class (12-Layer Model): All ≥94.46% (Forest: 98.64%, Industrial: 98.68%, P
 
 ***🚀 Quick Start***
 1. Clone and Setup
+'''
+'''
 bash
 git clone https://github.com/your-username/satellite-image-classification-eurosat.git
 cd satellite-image-classification-eurosat
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-2. Download Dataset
+3. Download Dataset
 The EuroSAT dataset will be downloaded automatically when using the data loader:
-
+'''
 python
 from utils.data_loader import load_eurosat_dataset
 train_ds, val_ds, test_ds = load_eurosat_dataset(download=True)  # Downloads ~90MB
 print(f"Loaded: Train {len(train_ds)}, Val {len(val_ds)}, Test {len(test_ds)}")
 3. Use Models and Utils
 Import and use the modules directly in your Python script or Jupyter notebook:
-
+'''
 python
 import torch
 import torch.nn as nn
@@ -55,18 +57,24 @@ from utils.visualization import plot_confusion_matrix
 from utils.data_loader import EuroSATConfig
 
 # Load data with transforms
+'''
+python
 train_ds, val_ds, test_ds = load_eurosat_dataset(download=True)
 train_loader, val_loader, test_loader = create_loaders(
     train_ds, val_ds, test_ds, get_train_transform(), get_test_transform()
 )
 
 # Model setup
+'''
+python
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = Balanced12LayerCNN(num_classes=EuroSATConfig.NUM_CLASSES).to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = AdamW(model.parameters(), lr=0.001, weight_decay=0.05)
 
 # Training loop (simplified - see configs for full params)
+'''
+python
 model.train()
 for epoch in range(1, 81):
     for inputs, targets in train_loader:
@@ -78,6 +86,8 @@ for epoch in range(1, 81):
         optimizer.step()
 
 # Evaluation
+'''
+python
 model.eval()
 all_preds, all_targets = [], []
 with torch.no_grad():
@@ -89,11 +99,15 @@ with torch.no_grad():
         all_targets.extend(targets.numpy())
 
 # Compute and plot metrics
+'''
+python
 metrics = compute_metrics(all_targets, all_preds)
 print(f"Test Accuracy: {metrics['accuracy']:.2f}%")
 plot_confusion_matrix(all_targets, all_preds)
 
 # Save model
+'''
+python
 torch.save(model.state_dict(), 'best_model.pth')
 print(f"Model saved. Params: {model.get_num_params():,}")
 Tips:
@@ -107,8 +121,11 @@ Augmentation: Use get_train_transform() for robust training.
 Metrics: compute_metrics() returns accuracy, F1, Kappa, per-class details.
 
 4. Test a Model (Standalone)
+'''
+'''
 bash
 python models/balanced_12layer.py  # Outputs shape, params, attention weights
+'''
 Expected Output: ~11.2M params, attention α ≈0.5 (learnable).
 
 ***📊 Results***
